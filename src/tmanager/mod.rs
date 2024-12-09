@@ -20,7 +20,7 @@ enum Priority {
     High,
 }
 
-fn main() {
+pub fn do_task_manager() {
     println!("Welcome to Task Manager!");
     println!("------------------------");
 

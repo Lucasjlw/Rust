@@ -1,4 +1,6 @@
 [workspace]
 members = [
-    "projects/chat/server"
+    "projects/chat/server",
+    "projects/shortener",
+    "projects/tmanager"
 ]

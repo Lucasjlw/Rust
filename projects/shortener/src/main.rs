@@ -42,7 +42,7 @@ impl Lookup {
     }
 }
 
-pub fn do_shortener() {
+pub fn main() {
     let mut lookup = Lookup::new();
 
     loop {

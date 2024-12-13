@@ -1,7 +1,7 @@
-use chrono::{Local, NaiveDate};
+use chrono::NaiveDate;
 use serde::{Deserialize, Serialize};
 use std::fs;
-use std::io::{self, Write};
+use std::io::stdin;
 
 #[derive(Debug, Serialize, Deserialize)]
 struct Task {
@@ -20,7 +20,7 @@ enum Priority {
     High,
 }
 
-pub fn do_task_manager() {
+pub fn main() {
     println!("Welcome to Task Manager!");
     println!("------------------------");
 
@@ -123,7 +123,7 @@ fn handle_delete_task(tasks: &mut Vec<Task>) {
 }
 
 fn handle_save_tasks(tasks: &Vec<Task>) {
-    fs::write("./tasks.json", serde_json::to_string(tasks).unwrap());
+    let _ = fs::write("./tasks.json", serde_json::to_string(tasks).unwrap());
 }
 
 fn handle_load_tasks(tasks: &mut Vec<Task>) {
@@ -135,7 +135,7 @@ fn handle_load_tasks(tasks: &mut Vec<Task>) {
 fn read_input() -> String {
     let mut input = String::new();
 
-    io::stdin()
+    stdin()
         .read_line(&mut input)
         .expect("Failed to read input");
 

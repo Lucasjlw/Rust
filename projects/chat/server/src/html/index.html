@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chat</title>
+
+    <script>
+      let socket;
+      let reconnectAttempts = 0;
+      const maxReconnectAttempts = 5;
+      const reconnectDelay = 3000; // 3 seconds
+
+      function connectWebSocket() {
+        const wsProtocol =
+          window.location.protocol === "https:" ? "wss:" : "ws:";
+        socket = new WebSocket(
+          `${wsProtocol}//${window.location.host}/connection`
+        );
+        socket.onmessage = function (event) {
+          const chatHistory = document.getElementById("chat-history");
+          const now = new Date().toLocaleTimeString();
+          chatHistory.innerHTML += `<p>${now} - ${event.data}</p>`;
+        };
+
+        socket.onclose = function (event) {
+          console.log("WebSocket connection closed");
+          if (reconnectAttempts < maxReconnectAttempts) {
+            console.log("Attempting to reconnect...");
+            setTimeout(connectWebSocket, reconnectDelay);
+            reconnectAttempts++;
+          } else {
+            console.log("Max reconnection attempts reached");
+          }
+        };
+
+        socket.onerror = function (error) {
+          console.error("WebSocket error:", error);
+        };
+
+        socket.onopen = function () {
+          console.log("WebSocket connected");
+          reconnectAttempts = 0; // Reset reconnect attempts on successful connection
+        };
+      }
+
+      // Initial connection
+      connectWebSocket();
+
+      function sendMessage() {
+        const chatHistory = document.getElementById("chat-history");
+        const messageInput = document.getElementById("message-input");
+        const message = messageInput.value;
+        const time = new Date().toLocaleTimeString();
+
+        if (socket.readyState === WebSocket.OPEN) {
+          socket.send(message);
+          chatHistory.innerHTML += `<p>${time} - ${message}</p>`;
+          messageInput.value = "";
+        } else {
+          alert("Connection lost. Attempting to reconnect...");
+        }
+      }
+    </script>
+  </head>
+
+  <body>
+    <h1>Chat</h1>
+
+    <div>
+      <div id="chat-history"></div>
+
+      <div style="display: flex; flex-direction: row">
+        <input id="message-input" type="text" />
+        <button id="send-button" onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+  </body>
+</html>

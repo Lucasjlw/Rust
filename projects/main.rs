@@ -1,15 +1,11 @@
-mod chat;
 mod shorterner;
 mod tmanager;
 
-use chat::server::Server;
 use shorterner::do_shortener;
 use std::io::stdin;
 use tmanager::do_task_manager;
 
 fn main() {
-    return debug_main();
-
     println!("What program do you want to run?");
     println!("1. URL Shortener");
     println!("2. Task Manager");
@@ -26,12 +22,6 @@ fn main() {
         2 => do_task_manager(),
         _ => return,
     }
-}
-
-fn debug_main() {
-    let mut server = Server::default();
-
-    server.start();
 }
 
 fn read_input() -> String {

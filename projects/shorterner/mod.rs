@@ -2,7 +2,6 @@ use rand::distributions::Alphanumeric;
 use rand::{thread_rng, Rng};
 use std::collections::HashMap;
 use std::io::{stdin, Write};
-use std::os::unix::thread;
 
 struct MapValue {
     url: String,

@@ -3,6 +3,10 @@ name = "chat_server"
 version = "0.1.0"
 edition = "2021"
 
+[[bin]]
+name = "chat_server"
+path = "src/main.rs"
+
 [dependencies]
 base64 = "0.22.1"
 chrono = { version = "0.4", features = ["serde"] }

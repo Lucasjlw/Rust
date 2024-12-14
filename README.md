@@ -17,3 +17,6 @@ A collection of Rust projects intended to be as low-level as I am capable. This 
 ### Chat Server
 - Simple server for sending and receiving messages over WebSockets.
 - *UI for sending this without a JS framework
+
+### Image
+- Generates a random PNG file from scratch, using libraries only for crc and DEFLATE.

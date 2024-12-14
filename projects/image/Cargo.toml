@@ -1,0 +1,9 @@
+[package]
+name = "image"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+crc32fast = "1.4.2"
+flate2 = "1.0.35"
+rand = "0.8.5"

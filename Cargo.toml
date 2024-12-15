@@ -3,5 +3,6 @@ members = [
     "projects/chat/server",
     "projects/shortener",
     "projects/tmanager",
-    "projects/image"
+    "projects/image",
+    "projects/compression"
 ]

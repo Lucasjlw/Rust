@@ -4,5 +4,7 @@ members = [
     "projects/shortener",
     "projects/tmanager",
     "projects/image",
-    "projects/compression"
+    "projects/compression",
+    "projects/crusty",
+    "projects/neuralnetwork"
 ]
